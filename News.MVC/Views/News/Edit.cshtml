@@ -1,0 +1,51 @@
+﻿@model NewsEditDTO
+
+@{
+    var news = Model;
+    List<SelectListItem> authors = ViewData["Authors"] as List<SelectListItem> ?? new();
+}
+<section>
+    <div class="container-fluid h-custom">
+        <div class="col-md-8 col-lg-6 col-xl-8 offset-xl-1" style="margin-left:auto;margin-right:auto">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="ID" />
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="Title"></label>
+                    <input type="text" class="form-control" asp-for="Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="NewsDetails"></label>
+                    <textarea class="form-control" asp-for="NewsDetails" rows="4"></textarea>
+                    <span asp-validation-for="NewsDetails" class="text-danger"></span>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="ImageUrl"></label>
+                    <input type="text" class="form-control" asp-for="ImageUrl" />
+                    <span asp-validation-for="ImageUrl" class="text-danger pt-2"></span>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="PublicationDate"></label>
+                    <input class="form-control" asp-for="PublicationDate" />
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="AuthorID"></label>
+                    <select class="form-select" asp-for="AuthorID" asp-items="@authors"></select>
+                    <span asp-validation-for="AuthorID" class="text-danger pt-2"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success btn-block mb-4 text-center" style="width:200px">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

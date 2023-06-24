@@ -1,0 +1,29 @@
+﻿@model List<NewsReadDTO>
+
+@{
+    var news = Model;
+}
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in news)
+        {
+
+            <div class="card-deck col-4 mb-3">
+                <div class="card bg-secondary bg-gradient">
+                    <a asp-action="Details" asp-route-id="@item.ID"> <img class="card-img-top" src="@item.ImageURL"></a>
+
+                    <div class="card-body" style="height:100px">
+                        <h5 class="card-title"><a asp-action="Details" asp-route-id="@item.ID" class="text-decoration-none text-black ">@item.Title</a></h5>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+
